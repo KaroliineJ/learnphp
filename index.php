@@ -17,7 +17,12 @@ class MetalBox extends Box {
     }
 }
 
-
+trait HasMaterial {
+    public $material;
+    public function getMaterial(){
+        return $this->material;
+    }
+}
 
 $num1= 1;
 $num2= $num1;
@@ -30,3 +35,4 @@ $metal1->height = 1;
 $metal2 = clone $metal1;
 $metal2->height = 2;
 var_dump($metal1, $metal2);
+
