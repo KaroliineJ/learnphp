@@ -1,38 +1,40 @@
 <?php
 
-class Box {
-    public $height;
-    public $width;
-    public $length;
-
-    public function volume(){
-        return $this->height * $this->width * $this->length;
+class ConsoleLogger implements Logger {
+    public function log($message){
+        echo "$message\n";
     }
 }
 
-class MetalBox extends Box {
-    public $weightPerUnit = 10; 
-    public function weight(){
-        return $this->volume() * $this->weightPerUnit;
+class Task {
+    public function work(Logger $logger){
+        for($i=0;<10;$i++){
+            $logger->log($i);
+        }
     }
 }
 
-trait HasMaterial {
-    public $material;
-    public function getMaterial(){
-        return $this->material;
+interface Logger {
+    public function log($message);
+}
+
+//-----------------
+
+class NothingLogger {
+    public function log($message){
+
     }
 }
 
-$num1= 1;
-$num2= $num1;
-$num2= 2;
-var_dump($num1, $num2);
+class FileLogger {
+    public function log($message){
+        $file = fopen('log.txt', 'a');
+        fwrite($file, "$message\n");
+        fclose($file);
+    }
+}
 
-
-$metal1 = new MetalBox();
-$metal1->height = 1;
-$metal2 = clone $metal1;
-$metal2->height = 2;
-var_dump($metal1, $metal2);
+$logger = new ConsoleLogger();
+$task = new Task();
+$task->work('hfuejipew');
 
