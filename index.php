@@ -1,39 +1,33 @@
 <?php
 
 class Box {
-    public $height;
-    protected $width;
-    private $length;
+    public function __construct(){
+    echo "Box was created\n";
+    }
+    public function __set($name){
+        return 'cool value';
 
-    public function volume(){
-        return $this->height * $this->width * $this->length;
     }
-    public function getLength(){
-        return $this->length;
+    public function __set($name, $value){
+        var_dump($name, $value);
+
     }
-    public function setLength($length){
-        if(is_numeric($length) && $length > 0) {
-            $this->length = $length;
-        } else {
-            $this->length = 0;
-        }
+    public function __destruct(){
+        echo "Box was destroyed\n";
+    }
+    public function __invoke(...$args){
+        var_dump($args);
     }
 }
 
-class MetalBox extends Box {
-    public $weightPerUnit = 10; 
-    public function weight(){
-        return $this->volume() * $this->weightPerUnit;
-    }
-    public function testProtected(){
-        var_dump($this->length);
-    }
-}
 
-$box = new MetalBox();
-$box->setLength(121);
-$box->testProtected(141);
+
+$box = new Box();
+$box->name = 'karoliine';
+var_dump($box->);
 var_dump($box);
+
+
 
 ?>
 
