@@ -1,33 +1,20 @@
 <?php
 
 class Box {
+    public static $count = 0;
+    public $id;
     public function __construct(){
-    echo "Box was created\n";
+        $this->id = self::$count++;
+    }   
+    public static function setCount(){
+        //var_dump($this->id);
+        var_dump(static::$count);
     }
-    public function __set($name){
-        return 'cool value';
+ }
+class MetalBox extends Box{
 
-    }
-    public function __set($name, $value){
-        var_dump($name, $value);
-
-    }
-    public function __destruct(){
-        echo "Box was destroyed\n";
-    }
-    public function __invoke(...$args){
-        var_dump($args);
-    }
 }
-
-
-
-$box = new Box();
-$box->name = 'karoliine';
-var_dump($box->);
-var_dump($box);
-
-
+MetalBox::name();
 
 ?>
 
