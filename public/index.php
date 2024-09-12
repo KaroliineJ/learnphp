@@ -16,13 +16,26 @@ spl_autoload_register(function($class){
     require_once "src/$class.php";
 });
 
+require 'routes.php';
+
+$router = new Router($_SERVER['REQUEST_URI']);
+$match = $router->match();
+if($match){
+    call_user_func($match['action']);
+} else {
+    echo 'ERROR 404';
+}
+
+
+
+
 // require_once 'src/Router.php';
 // require_once 'src/Router.php';
 
-$router = new App\Router();
-$db = new App\DB();
-$controller = new App\Controllers\PublicController();
-dump($router, $db, $controller);
+// $router = new App\Router();
+// $db = new App\DB();
+// $controller = new App\Controllers\PublicController();
+// dump($router, $db, $controller);
 
 //switch($_SERVER['REQUEST_URI']){
 //   case '/':
@@ -48,12 +61,12 @@ dump($router, $db, $controller);
 //         include 'views/index.php';
 //         break;
 //     case 'us':
-//         $posts = [
-//             ['title' => 'Some title 1', 'body' => 'Some body 1'],
-//             ['title' => 'Some title 2', 'body' => 'Some body 2'],
-//             ['title' => 'Some title 3', 'body' => 'Some body 3'],
-//             ['title' => 'Some title 4', 'body' => 'Some body 4'],
-//         ];
+        // $posts = [
+        //     ['title' => 'Some title 1', 'body' => 'Some body 1'],
+        //     ['title' => 'Some title 2', 'body' => 'Some body 2'],
+        //     ['title' => 'Some title 3', 'body' => 'Some body 3'],
+        //     ['title' => 'Some title 4', 'body' => 'Some body 4'],
+        // ];
 //         include 'views/us.php';
 //         break;
 //     case '/tech':
