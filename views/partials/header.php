@@ -185,7 +185,7 @@
       </div>
     </div>
   </header>
-<?php include 'partials/nav.php'; ?>
+<?php include 'nav.php'; ?>
 
   </div>
 </div>

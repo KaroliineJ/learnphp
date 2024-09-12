@@ -1,10 +1,5 @@
 <?php
-$posts = [
-    ['title' => 'Some title 1', 'body' => 'Some body 1'],
-    ['title' => 'Some title 2', 'body' => 'Some body 2'],
-    ['title' => 'Some title 3', 'body' => 'Some body 3'],
-    ['title' => 'Some title 4', 'body' => 'Some body 4'],
-];
+
 ?>
 
 <?php include 'partials/header.php'; ?>
