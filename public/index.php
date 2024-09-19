@@ -17,7 +17,7 @@ spl_autoload_register(function($class) {
 
 require 'routes.php';
 
-dump($_SERVER);
+// dump($_SERVER);
 
 $router = new App\Router($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 $match = $router->match();
