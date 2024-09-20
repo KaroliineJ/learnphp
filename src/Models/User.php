@@ -6,6 +6,6 @@ class User extends Model{
     public static $table='users';
 
     public $id;
-    public $title;
-    public $body;
+    public $email;
+    public $password;
 }
