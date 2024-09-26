@@ -9,9 +9,9 @@ class Route {
 
     public function __construct($method, $path, $action)
     {
-        $this->method =$method;
-        $this->path =$path;
-        $this->action =$action;
+        $this->method = $method;
+        $this->path = $path;
+        $this->action = $action;
     }
 
     public static function get($path, $action){
@@ -20,5 +20,4 @@ class Route {
     public static function post($path, $action){
         Router::addRoute('POST', $path, $action);
     }
-
 }

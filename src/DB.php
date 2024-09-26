@@ -1,23 +1,26 @@
 <?php
+
 namespace App;
 
 use PDO;
 use PDOException;
 
-class DB {
+class DB
+{
     private $conn;
-    public function __construct() {
+    public function __construct()
+    {
         try {
-            $this->conn = new PDO('sqlite:'. __DIR__ .'db.sqlite');
+            $this->conn = new PDO('sqlite:'. __DIR__ . '/../db.sqlite');
             // set the PDO error mode to exception
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
     }
 
-    public function all($table, $class){
+    public function all($table, $class)
+    {
         $stmt = $this->conn->prepare("SELECT * FROM $table");
         $stmt->execute();
         // set the resulting array to associative
@@ -25,7 +28,8 @@ class DB {
         return $stmt->fetchAll();
     }
 
-    public function find($table, $class, $id){
+    public function find($table, $class, $id)
+    {
         $stmt = $this->conn->prepare("SELECT * FROM $table WHERE id=$id");
         $stmt->execute();
         // set the resulting array to associative
@@ -35,13 +39,19 @@ class DB {
 
     public function insert($table, $fields)
     {
-        $fieldNames= array_keys($table, $fields);
-        $fieldNamesText = implode(',', $fieldNames);
-        $fieldValuesText = implode("','", $fields);
-        
-        $sql = "INSERT INTO $table (firstname, lastname, email)
-        VALUES ('john, 'doe', 'john@gmail.com')";
-        dd($sql);
+        $fieldNames = array_keys($fields);
+        $fieldNamesText = implode(', ', $fieldNames);
+        $fieldValuesText = implode("', '", $fields);
+        $sql = "INSERT INTO $table ($fieldNamesText) 
+                VALUES ('$fieldValuesText')";
+        // use exec() because no results are returned
+        $this->conn->exec($sql);
+    }
+
+    public function delete($table, $id){
+        $sql = "DELETE FROM $table WHERE id=$id";
+
+        // use exec() because no results are returned
         $this->conn->exec($sql);
     }
 }
