@@ -22,12 +22,27 @@ class PostsController
         $post->save();
         redirect('/admin/posts');
     }
+    
+    public function edit(){
+        $post = Post::find($_GET['id']);
+        view('posts/edit', compact('post'));
+    }
 
+    public function update(){
+        $post = Post::find($_GET['id']);
+        $post->title = $_POST['title'];
+        $post->body = $_POST['body'];
+        $post->save();
+        redirect('/admin/posts');
+    }
     public function destroy(){
         $post = Post::find($_GET['id']);
         if($post){
             $post->delete();
         }
         redirect('/admin/posts');
+    }
+    public function show(){ //tööööö, uus route, uus vaade, väike tabel andmetega, nagu edit, aga formi ja inputi asemel tabel
+
     }
 }
