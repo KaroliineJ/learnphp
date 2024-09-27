@@ -8,6 +8,7 @@ class PostsController
 {
     public function registerForm(){
         view('auth/register');
+        unset($_SESSION['error']);
     }
     public function register(){
         $user = User::where('email', $_POST['email']);
@@ -16,18 +17,29 @@ class PostsController
             $user->email = $_POST['email'];
             $user->password = password_hash($_POST['password'], PASSWORD_BCRYPT);
             $user->save();
+            redirect('/login');
         } else {
+            $_SESSION['error'] = "account exists or passwords don't match";
             redirect('/register');
         }
      
     }
     public function loginForm(){
-
+        view('auth/login');
     }
     public function login(){
-
+        $user = User::where('email', $_POST['email']);
+        $user = $user[0] ?? null;
+        if($user && password_verify($_POST['password'], $user->password)){
+            $SESSION['userId'] = $user->id;
+            redirect('/');
+        } else {
+            $_SESSION['newerror'] = "Credentials don't match";
+            redirect('/login');
+        }
     }
     public function logout(){
-
+        unset($_SESSION['userId']);
+        redirect('/');
     }
 }

@@ -210,8 +210,18 @@
               <path d="M21 21l-5.2-5.2" />
             </svg>
           </a>
-          <a class="btn btn-sm btn-outline-secondary" href="/register">Sign up</a>
-          <a class="btn btn-sm btn-primary" href="/login">Login</a>
+          <?php if (auth()): ?>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button"   aria-expanded="false">
+              <?=auth()->email?>
+            </button>
+            </div>
+
+
+          <?php else: ?>
+            <a class="btn btn-sm btn-outline-secondary" href="/register">Sign up</a>
+            <a class="btn btn-sm btn-primary" href="/login">Login</a>
+          <?php endif; ?>
         </div>
       </div>
     </header>
