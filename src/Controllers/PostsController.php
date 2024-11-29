@@ -68,10 +68,9 @@ class PostsController
         redirect('/admin/posts');
     }
 
-    public function show(){ //SINCE WHEN DO WE HAVE HOMEWORK
+    public function show(){ 
         $post = Post::find($_GET['id']);
         view('posts/show', compact('post'));
-        // redirect('/admin/posts');
     }
 
 }
