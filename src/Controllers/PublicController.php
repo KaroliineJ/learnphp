@@ -9,12 +9,8 @@ use App\Models\User;
 class PublicController
 {
     public function index()
-    {   
-
-        // $_SESSION['userId'] =2;
-        // dump($_SESSION);
-        //setcookie('mycookie', 'tasty', time() + 30 * 24 * 60 * 60 );
-        // dd($_COOKIE);
+    {
+        
         $posts = Post::all();
         view('index', compact('posts'));
         //view('index', ['posts' => $posts]);
@@ -25,7 +21,6 @@ class PublicController
         $posts = Post::all();
         dd($posts);
         view('us', compact('posts'));
-
     }
 
     public function tech()

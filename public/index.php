@@ -27,8 +27,8 @@ if($match){
     echo 'ERROR 404';
 }
 
-user($_SESSION['error']);
+unset($_SESSION['error']);
 if(isset($_SESSION['newerror'])){
     $_SESSION['error'] = $_SESSION['newerror'];
-    unset($_SESSION['error']);
+    unset($_SESSION['newerror']);
 }
